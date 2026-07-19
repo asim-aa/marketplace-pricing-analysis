@@ -1,0 +1,6 @@
+vehicle_age_band,listing_count,median_price,median_odometer
+0-3 years,71188,31600.0,22018.5
+4-7 years,106961,21590.0,70000.0
+8-12 years,89927,10995.0,114825.0
+13-20 years,71533,5999.0,148000.0
+21+ years,22347,6850.0,115223.0
