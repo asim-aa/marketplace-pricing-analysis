@@ -352,3 +352,115 @@ Expected result:
 ---
 
 This project is intended as an analytical and educational decision-support system. It does not provide financial, purchasing, or valuation advice.
+
+## Reproducing the Project
+
+### 1. Clone the repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd marketplace-pricing-analysis
+```
+
+### 2. Install Python and dependencies
+
+This project uses `uv` for dependency and environment management.
+
+```bash
+uv python install
+uv sync
+```
+
+### 3. Add the raw dataset
+
+Download the Craigslist used-cars dataset and place it at:
+
+```text
+data/raw/vehicles.csv
+```
+
+The raw dataset is not stored in Git because of its size.
+
+### 4. Run data ingestion
+
+```bash
+uv run python -m src.data.ingestion
+```
+
+### 5. Clean and validate the data
+
+```bash
+uv run python -m src.data.cleaning
+uv run python -m src.data.validation
+```
+
+### 6. Create chronological train, calibration, and test splits
+
+```bash
+uv run python -m src.data.splitting
+```
+
+### 7. Build the model features
+
+```bash
+uv run python -m src.features.build_features
+```
+
+### 8. Run baseline models
+
+```bash
+uv run python -m src.models.baselines
+uv run python -m src.models.ridge
+```
+
+### 9. Train the CatBoost model
+
+```bash
+uv run python -m src.models.train
+```
+
+### 10. Evaluate the final model
+
+```bash
+uv run python -m src.models.final_evaluation
+```
+
+### 11. Run conformal uncertainty analysis
+
+```bash
+uv run python -m src.uncertainty.run_conformal
+uv run python -m src.uncertainty.analyze_uncertainty
+```
+
+### 12. Generate analytical reports and figures
+
+```bash
+uv run python -m src.analysis.market_overview
+uv run python -m src.analysis.visualizations
+```
+
+### 13. Generate Tableau exports
+
+```bash
+uv run python -m src.analysis.tableau_export
+uv run python -m src.analysis.opportunity_tableau_export
+```
+
+The primary Tableau dataset is generated at:
+
+```text
+data/tableau/marketplace_opportunity_dashboard.csv
+```
+
+### 14. Run code-quality checks
+
+```bash
+uv run ruff format --check src tests
+uv run ruff check src tests
+```
+
+### 15. Run the full test suite
+
+```bash
+uv run pytest
+```
