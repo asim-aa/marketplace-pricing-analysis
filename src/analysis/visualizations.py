@@ -1,6 +1,5 @@
 """Create exploratory marketplace visualizations."""
 
-
 import matplotlib.pyplot as plt
 import pandas as pd
 

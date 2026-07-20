@@ -16,3 +16,7 @@ data/tableau/*
 !data/tableau/.gitkeep
 models/*
 !models/.gitkeep
+
+# Trained model artifacts
+models/*.cbm
+models/*.joblib
