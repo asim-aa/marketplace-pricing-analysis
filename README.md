@@ -1,6 +1,5 @@
 
 
-
 # Uncertainty-Aware Marketplace Pricing Analysis
 
 > An end-to-end machine-learning and business-intelligence project that estimates market-consistent vehicle asking prices, quantifies prediction uncertainty, and surfaces listings that merit further review.
@@ -51,17 +50,20 @@ CatBoost reduced MAE by approximately **$1,520 per listing** relative to the str
 
 ## Tableau opportunity dashboard
 
-[![Marketplace Pricing Opportunity Dashboard](reports/figures/marketplace_opportunity_dashboard.png)](reports/tableau/marketplace_opportunity_dashboard.twbx)
 
-The dashboard provides:
+[![Marketplace Pricing Opportunity Dashboard](reports/figures/marketplace_opportunity_dashboard.png)](https://public.tableau.com/app/profile/asim.ahmed5467/viz/marketplace_oppurtunity_dashboard/MarketplaceOpportunityDashboard#2)
+
+**[View the interactive Tableau dashboard](https://public.tableau.com/app/profile/asim.ahmed5467/viz/marketplace_oppurtunity_dashboard/MarketplaceOpportunityDashboard#2)**  
+**[Download the packaged Tableau workbook](reports/tableau/marketplace_opportunity_dashboard.twbx)**
+
+
+# The dashboard provides:
 
 - KPI cards for analyzed, potentially underpriced, market-consistent, and potentially overpriced listings
 - A ranked listing-level opportunity explorer
 - Asking price, predicted price, and 90% lower and upper estimates
 - Filters for state, manufacturer, vehicle type, price band, confidence, and signal strength
 - A ranked view of manufacturers with the most opportunity signals
-
-**[Download the packaged Tableau workbook](reports/tableau/marketplace_opportunity_dashboard.twbx)**
 
 > Opportunity labels are model-relative screening signals. They are not verified bargains, transaction prices, or purchasing recommendations.
 
@@ -218,6 +220,7 @@ marketplace-pricing-analysis/
 │   ├── tableau/              # packaged Tableau workbook
 │   ├── baseline_results.md
 │   ├── eda_report.md
+│   ├── model_card.md
 │   └── uncertainty_report.md
 ├── src/
 │   ├── analysis/             # EDA, visualizations, Tableau exports
@@ -238,13 +241,16 @@ marketplace-pricing-analysis/
 - Python 3.13
 - [`uv`](https://docs.astral.sh/uv/)
 - Kaggle API credentials
-- Tableau Desktop or Tableau Reader for the packaged workbook
+- Tableau Desktop or Tableau Reader to open the packaged workbook
+- A web browser to use the live Tableau Public dashboard
 
 ### 1. Clone and install
 
 ```bash
 git clone https://github.com/asim-aa/marketplace-pricing-analysis.git
 cd marketplace-pricing-analysis
+
+uv python install 3.13
 uv sync
 ```
 
@@ -282,6 +288,8 @@ uv run python -m src.analysis.tableau_export
 
 # Chronological splitting and baseline evaluation
 uv run python -m src.data.splitting
+uv run python -m src.models.baselines
+uv run python -m src.models.ridge
 uv run python -m src.models.evaluate
 
 # CatBoost model selection and final evaluation
@@ -319,6 +327,7 @@ Expected result:
 - [Final model metrics](reports/tables/final_model_metrics.csv)
 - [CatBoost feature importance](reports/tables/catboost_feature_importance.csv)
 - [Conformal uncertainty report](reports/uncertainty_report.md)
+- [Model card](reports/model_card.md)
 - [Conditional coverage metrics](reports/tables/conditional_coverage_metrics.csv)
 - [Tableau dashboard workbook](reports/tableau/marketplace_opportunity_dashboard.twbx)
 
