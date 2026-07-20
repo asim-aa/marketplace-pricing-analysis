@@ -1,29 +1,7 @@
-.venv/
-__pycache__/
-.pytest_cache/
-.ruff_cache/
-.ipynb_checkpoints/
-.DS_Store
-*.py[cod]
-
-data/raw/*
-!data/raw/.gitkeep
-data/interim/*
-!data/interim/.gitkeep
-data/processed/*
-!data/processed/.gitkeep
-data/tableau/*
-!data/tableau/.gitkeep
-models/*
-!models/.gitkeep
-
-# Trained model artifacts
-models/*.cbm
-models/*.joblib
 # macOS
 .DS_Store
 
-# Python
+# Python bytecode and caches
 __pycache__/
 *.py[cod]
 *$py.class
@@ -33,7 +11,7 @@ __pycache__/
 venv/
 env/
 
-# Test and lint caches
+# Test, lint, and coverage caches
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
@@ -48,7 +26,7 @@ htmlcov/
 .env.*
 !.env.example
 
-# Raw and processed datasets
+# Raw and generated datasets
 data/raw/*
 !data/raw/.gitkeep
 
@@ -58,13 +36,16 @@ data/interim/*
 data/processed/*
 !data/processed/.gitkeep
 
-# Generated Tableau data exports
 data/tableau/*
 !data/tableau/.gitkeep
 
-# Trained model binaries
+# Trained model artifacts
 models/*
 !models/.gitkeep
+
+# Large generated prediction tables
+reports/tables/conformal_test_predictions.csv
+reports/tables/marketplace_opportunities.csv
 
 # Tableau temporary and recovery files
 *.twbr
@@ -73,7 +54,3 @@ models/*
 
 # Logs
 *.log
-
-# Large generated prediction tables
-reports/tables/conformal_test_predictions.csv
-reports/tables/marketplace_opportunities.csv
