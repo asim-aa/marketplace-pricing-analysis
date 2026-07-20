@@ -18,6 +18,7 @@ from src.models.baselines import (
     SegmentMedianBaseline,
     load_split,
 )
+from src.models.ridge import RidgePriceModel
 
 REPORT_PATH = PROJECT_ROOT / "reports" / "baseline_results.md"
 TABLE_PATH = PROJECT_ROOT / "reports" / "tables" / "baseline_metrics.csv"
@@ -176,8 +177,8 @@ def main() -> None:
     models = {
         "global_median": GlobalMedianBaseline().fit(train),
         "segment_median": SegmentMedianBaseline().fit(train),
+        "ridge": RidgePriceModel().fit(train),
     }
-
     overall_metrics = []
     price_band_results = []
 
